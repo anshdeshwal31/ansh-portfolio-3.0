@@ -12,7 +12,7 @@ const certifications = [
     tagHighlighted: true,
     title: "Data Structures and Algorithm",
     description:
-      "Certified in DSA from Lovely Professional University (iamneo) — covering problem solving, algorithmic thinking, and C++ implementation.",
+      "Certified in DSA (iamneo) — covering problem solving, algorithmic thinking, and C++ implementation.",
     link: "https://drive.google.com/file/d/1RGlHtnjF3M8EkLoKx3DvffMSE2ecQKAy/view?usp=sharing",
   },
   {
@@ -21,7 +21,7 @@ const certifications = [
     tagHighlighted: false,
     title: "Java Programming",
     description:
-      "Certified in Java Programming from LPU (iamneo) — OOP, Collections, Multithreading, and design patterns.",
+      "Certified in Java Programming (iamneo) — OOP, Collections, Multithreading, and design patterns.",
     link: "https://drive.google.com/file/d/1cCur8MMnBFB5aVmu3fZ7HYbmv35K4Q9p/view?usp=sharing",
   },
   {
@@ -30,7 +30,7 @@ const certifications = [
     tagHighlighted: true,
     title: "Object Oriented Programming",
     description:
-      "Certified in OOP from LPU (iamneo) — abstraction, polymorphism, design patterns, and SOLID principles.",
+      "Certified in OOP (iamneo) — abstraction, polymorphism, design patterns, and SOLID principles.",
     link: "https://drive.google.com/file/d/19ZBfi7WJq6kdi_KYUSAml4eM6OBy9Bbc/view?usp=sharing",
   },
 ];

@@ -11,6 +11,7 @@ const allProjects = [
     role: "AI Meeting Intelligence SaaS",
     techStack: ["Next.js", "TypeScript", "Prisma", "OpenAI", "AWS", "Razorpay"],
     period: "JUN '25 – MAR '26",
+    location: "REMOTE",
     highlights: [
       {
         title: "RAG Pipeline",
@@ -21,6 +22,14 @@ const allProjects = [
         desc: "Google Calendar, Slack, Jira/Asana/Trello, Razorpay subscriptions with full webhook handling.",
         stat: { value: "5+", label: "integrations" },
       },
+      {
+        title: "Real-time Collaboration",
+        desc: "WebSockets for live transcript editing and team annotations during active meetings.",
+      },
+      {
+        title: "Secure Data Handling",
+        desc: "Implemented end-to-end encryption for meeting transcripts and SOC2 compliance readiness.",
+      },
     ],
   },
   {
@@ -28,6 +37,7 @@ const allProjects = [
     role: "GitHub AI Code Review Assistant",
     techStack: ["TypeScript", "Next.js", "Qdrant", "Inngest", "Prisma"],
     period: "JAN '26 – MAR '26",
+    location: "REMOTE",
     highlights: [
       {
         title: "Semantic Code Retrieval",
@@ -38,6 +48,14 @@ const allProjects = [
         desc: "Clerk auth, per-plan usage metering, analytics dashboards, Polar-based billing.",
         stat: { value: "-40%", label: "review time" },
       },
+      {
+        title: "GitHub App Integration",
+        desc: "Seamless installation with webhook event handling for PR comments and issue updates.",
+      },
+      {
+        title: "Agentic Workflows",
+        desc: "Orchestrated complex code generation steps using Inngest for reliable, durable execution.",
+      },
     ],
   },
   {
@@ -45,6 +63,7 @@ const allProjects = [
     role: "Website Monitoring Platform",
     techStack: ["TypeScript", "Next.js", "Express", "Bun", "Redis", "PostgreSQL"],
     period: "FEB '26 – MAR '26",
+    location: "INDIA",
     highlights: [
       {
         title: "Event-Driven Pipeline",
@@ -54,6 +73,14 @@ const allProjects = [
         title: "Production Backend",
         desc: "JWT auth, bcrypt hashing, schema validation, integration tests, unified uptime dashboard.",
       },
+      {
+        title: "Alerting Engine",
+        desc: "Multi-channel incident alerts (Email, Slack, SMS) triggered by customizable rules.",
+      },
+      {
+        title: "Global Edge Probing",
+        desc: "Distributed health checks via edge functions to accurately measure global latency.",
+      },
     ],
   },
   {
@@ -61,6 +88,7 @@ const allProjects = [
     role: "Hospital Management Platform",
     techStack: ["React.js", "Node.js", "MongoDB", "Razorpay"],
     period: "2024",
+    location: "INDIA",
     highlights: [
       {
         title: "Full-Stack Platform",
@@ -70,6 +98,14 @@ const allProjects = [
         title: "RESTful Architecture",
         desc: "Clean API design with Express.js, middleware chains, and MongoDB aggregation pipelines.",
       },
+      {
+        title: "Role-Based Access",
+        desc: "Distinct portals for admins, doctors, and patients with secure data partitioning.",
+      },
+      {
+        title: "Real-time Telemetry",
+        desc: "Live dashboard for hospital bed availability and emergency room status updates.",
+      },
     ],
   },
   {
@@ -77,6 +113,7 @@ const allProjects = [
     role: "AI PDF Summarizer",
     techStack: ["Next.js", "LangChain", "Gemini", "FAISS"],
     period: "2024",
+    location: "INDIA",
     highlights: [
       {
         title: "Document Intelligence",
@@ -87,6 +124,14 @@ const allProjects = [
         title: "Semantic Search",
         desc: "FAISS-based vector search with embedding-level caching, reducing repeat-query latency by 50%.",
       },
+      {
+        title: "Contextual Chat",
+        desc: "Interactive Q&A over document contents with source citations and page references.",
+      },
+      {
+        title: "Batch Processing",
+        desc: "Scalable ingestion pipeline for handling 100+ page enterprise documents asynchronously.",
+      },
     ],
   },
   {
@@ -94,6 +139,7 @@ const allProjects = [
     role: "SQL Query Builder",
     techStack: ["React.js", "TypeScript", "PostgreSQL"],
     period: "2024",
+    location: "INDIA",
     highlights: [
       {
         title: "Visual Query Builder",
@@ -102,6 +148,14 @@ const allProjects = [
       {
         title: "Schema Explorer",
         desc: "Auto-detection of database schema with relationship visualization and query optimization hints.",
+      },
+      {
+        title: "Export & Reporting",
+        desc: "One-click export of query results to CSV, JSON, and PDF formats for reporting.",
+      },
+      {
+        title: "Version Control",
+        desc: "Built-in query history and versioning, allowing rollback to previous query states.",
       },
     ],
   },
@@ -144,19 +198,20 @@ export default function WorkSection() {
               {/* Header row */}
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
-                  <h3 className="font-serif text-[26px] sm:text-[32px] font-normal leading-tight">
+                  <h3 className="font-serif italic text-[32px] sm:text-[40px] font-normal leading-tight">
                     {proj.name}
                   </h3>
                   <p
-                    className="mt-1 font-kalam text-[16px] font-bold"
+                    className="mt-1 font-kalam text-[18px] font-bold"
                     style={{ color: "var(--accent-red)" }}
                   >
                     {proj.role}
                   </p>
                 </div>
-                <span className="font-mono text-[11px] tracking-[0.12em] text-[var(--text-muted)] uppercase flex-shrink-0 sm:text-right">
-                  {proj.period}
-                </span>
+                <div className="font-mono text-[11px] tracking-[0.12em] text-[var(--text-muted)] uppercase flex-shrink-0 sm:text-right flex flex-col items-end gap-1 mt-2 sm:mt-0">
+                  <span>{proj.period}</span>
+                  {proj.location && <span>{proj.location}</span>}
+                </div>
               </div>
 
               {/* Tech skills row */}

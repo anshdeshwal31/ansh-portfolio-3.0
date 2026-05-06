@@ -6,120 +6,119 @@ export default function BookCover() {
   return (
     <section
       id="cover"
-      className="notebook-bg relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      style={{ background: "var(--bg-cover)" }}
     >
-      {/* Decorative maroon stripes — asymmetric */}
-      <div
-        className="absolute top-0 right-0 w-[40%] h-full opacity-[0.03] pointer-events-none"
-        style={{
-          background:
-            "repeating-linear-gradient(135deg, #6b1a1a, #6b1a1a 2px, transparent 2px, transparent 20px)",
-        }}
-      />
-
-      <div className="relative w-full flex items-center justify-center px-4 sm:px-8 md:px-12 lg:px-20 py-16 sm:py-20">
-        <motion.div
-          className="relative w-full max-w-[1100px]"
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      {/* Intentional imbalance: Rotated background elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Hand-drawn scribble SVG in background */}
+        <motion.svg
+          className="absolute top-[15%] right-[5%] w-64 h-64 text-[#fdfcf0] opacity-20 rotate-12"
+          viewBox="0 0 200 200"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
         >
-          {/* Spine shadow */}
-          <div
-            className="absolute top-0 -left-2 bottom-0 w-8 z-10 pointer-events-none hidden sm:block"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)",
-              borderRadius: "8px 0 0 8px",
-            }}
+          <path
+            d="M 20 100 Q 50 20 100 100 T 180 100"
+            fill="transparent"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
           />
-          <div
-            className="absolute top-3 -left-1 bottom-3 w-px z-10 pointer-events-none hidden sm:block"
-            style={{ borderLeft: "2px dashed rgba(255,255,255,0.1)" }}
+          <path
+            d="M 40 120 Q 80 50 120 120 T 160 120"
+            fill="transparent"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
           />
+        </motion.svg>
+        
+        {/* Another random scribble */}
+        <svg className="absolute bottom-[10%] left-[10%] w-32 h-32 text-[#fdfcf0] opacity-20 -rotate-12" viewBox="0 0 100 100">
+           <circle cx="50" cy="50" r="40" fill="transparent" stroke="currentColor" strokeWidth="2" strokeDasharray="5,5" />
+        </svg>
+      </div>
 
-          {/* Book cover */}
-          <div className="book-cover relative rounded-lg overflow-hidden">
-            {/* Content */}
-            <div className="relative z-10 px-8 py-14 sm:px-14 sm:py-20 md:px-20 md:py-28 lg:px-24 lg:py-32">
-              {/* Meta line — maroon accent */}
-              <motion.p
-                className="font-mono text-[10px] sm:text-[12px] tracking-[0.25em] uppercase"
-                style={{ color: "rgba(255,255,255,0.35)" }}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                A SKETCHBOOK&nbsp;&nbsp;·&nbsp;&nbsp;ISSUE #01&nbsp;&nbsp;·&nbsp;&nbsp;2026
-              </motion.p>
+      <div className="relative w-full flex flex-col md:flex-row items-center justify-center px-6 sm:px-12 md:px-20 py-20 z-10 max-w-6xl gap-12">
+        
+        {/* Left column: Text & Typography */}
+        <motion.div
+          className="flex-1 w-full relative"
+          initial={{ opacity: 0, x: -20, rotate: -1 }}
+          animate={{ opacity: 1, x: 0, rotate: -2 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* A small hand-written note above the title */}
+          <motion.div
+            className="absolute -top-10 -left-4 font-caveat text-[22px] text-[#fdfcf0] opacity-80"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <span className="inline-block transform -rotate-12">hello, world! ↗</span>
+          </motion.div>
 
-              {/* Title */}
-              <motion.h1
-                className="mt-16 sm:mt-20 md:mt-24 font-serif leading-[0.92]"
-                style={{
-                  fontSize: "clamp(56px, 9vw, 120px)",
-                  color: "rgba(255,255,255,0.88)",
-                  letterSpacing: "-0.01em",
-                }}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Ansh{" "}
-                <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.4)" }}>
-                  &amp;
-                </em>{" "}
-                code
-                <span style={{ color: "#e74c3c" }}>.</span>
-              </motion.h1>
+          <h1
+            className="font-serif leading-[0.85] text-[#fdfcf0]"
+            style={{ fontSize: "clamp(60px, 10vw, 130px)", letterSpacing: "-0.02em" }}
+          >
+            Ansh <br />
+            <em className="text-[#fdfcf0] italic opacity-90">Deshwal</em>
+            <span className="text-[#fef08a]">.</span>
+          </h1>
 
-              {/* Subtitle */}
-              <motion.p
-                className="mt-6 sm:mt-8 font-caveat max-w-lg"
-                style={{
-                  fontSize: "clamp(18px, 2.5vw, 28px)",
-                  color: "rgba(255,255,255,0.42)",
-                  lineHeight: 1.4,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55 }}
-              >
-                A full-stack developer&apos;s working notebook — code, ship, iterate.
-              </motion.p>
+          <p
+            className="mt-8 font-caveat text-[24px] sm:text-[32px] text-[#fdfcf0] opacity-80 leading-[1.3] max-w-lg"
+            style={{ transform: "rotate(1deg)" }}
+          >
+            A full-stack developer's working notebook. <br/>
+            Code, ship, iterate, <span className="highlight text-black">drink chai</span>.
+          </p>
 
-              {/* Bottom metadata */}
-              <motion.div
-                className="mt-20 sm:mt-28 md:mt-36 flex flex-wrap items-center gap-y-3 font-mono text-[9px] sm:text-[11px] md:text-[12px] tracking-[0.2em] uppercase"
-                style={{ color: "rgba(255,255,255,0.25)" }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-              >
-                <span>INDIA</span>
-                <span className="mx-3 sm:mx-6" style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
-                <span>NEXT.JS · REACT · NODE.JS</span>
-                <a
-                  href="#about"
-                  className="ml-auto hover:text-white/50 transition-colors duration-200"
-                >
-                  SCROLL DOWN ↓
-                </a>
-              </motion.div>
+          <motion.div
+            className="mt-12 flex items-center gap-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            <a href="#projects" className="btn-resume text-[20px] px-6 py-2 shadow-lg bg-[#fdfcf0] text-[#6b1a1a] hover:bg-[#e8e3d8]">
+              Explore Projects
+            </a>
+            <span className="font-kalam text-[18px] text-[#fdfcf0] opacity-60 rotate-3">
+              or just scroll down ↓
+            </span>
+          </motion.div>
+        </motion.div>
+
+        {/* Right column: Taped Polaroid/Note (Asymmetrical & Imbalanced) */}
+        <motion.div
+          className="relative w-full max-w-[320px] hidden md:block"
+          initial={{ opacity: 0, y: 30, rotate: 6 }}
+          animate={{ opacity: 1, y: 0, rotate: 4 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ rotate: 2, scale: 1.02 }}
+        >
+          {/* Tape */}
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-8 bg-[var(--tape-yellow)] z-20 transform -rotate-3 opacity-90 shadow-sm mix-blend-multiply rounded-sm"></div>
+          
+          <div className="bg-white p-4 pb-12 rounded-sm shadow-[0_12px_24px_rgba(0,0,0,0.12)] border border-[var(--border-light)] relative z-10">
+            <div className="aspect-[4/5] bg-[#f4f2e6] border border-dashed border-[#ccc] flex flex-col items-center justify-center p-6 text-center">
+              <span className="font-serif italic text-[24px] text-[var(--text-primary)] mb-2">Currently</span>
+              <span className="font-caveat text-[20px] text-[var(--accent-red)]">Building scalable systems & exploring AI agents.</span>
             </div>
+            <p className="absolute bottom-3 left-0 w-full text-center font-kalam text-[18px] text-[var(--text-secondary)] font-bold">
+              Status: Available
+            </p>
           </div>
 
-          {/* Asymmetric label — intentional offset */}
-          <motion.p
-            className="font-caveat text-[14px] sm:text-[16px] mt-4 sm:ml-8 md:ml-12"
-            style={{ color: "var(--accent-red)", opacity: 0.5 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
-            transition={{ delay: 1.2 }}
-          >
-            ↑ the cover · scroll to explore ↓
-          </motion.p>
+          {/* Random sticker */}
+          <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-[var(--accent-red)] rounded-full flex items-center justify-center text-white font-serif italic text-[14px] shadow-lg transform rotate-12 border-2 border-dashed border-white">
+            100%<br/>Code
+          </div>
         </motion.div>
+
       </div>
     </section>
   );

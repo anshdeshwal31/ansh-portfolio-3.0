@@ -87,8 +87,8 @@ export default function ProjectsSection() {
           subtitle="weekend projects, taped to the page · click to explore"
         />
 
-        {/* Polaroid grid — 3 columns on desktop, 2 on tablet, 1 on mobile */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-6">
+        {/* Polaroid grid — 2 columns on desktop to make them larger, 1 on mobile */}
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
           {projects.map((project, i) => (
             <motion.a
               key={project.id}

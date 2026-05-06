@@ -16,7 +16,6 @@ const iconMap: Record<string, string> = {
   "Node.js": "https://icon.icepanel.io/Technology/svg/Node.js.svg",
   Prisma: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
   "Tailwind CSS": "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
-  "shadcn/ui": "https://icon.icepanel.io/Technology/svg/React.svg",
   AWS: "https://icon.icepanel.io/Technology/svg/AWS.svg",
   Docker: "https://icon.icepanel.io/Technology/svg/Docker.svg",
   Kubernetes: "https://icon.icepanel.io/Technology/svg/Kubernetes.svg",
@@ -26,15 +25,14 @@ const iconMap: Record<string, string> = {
   Helm: "https://icon.icepanel.io/Technology/svg/Helm.svg",
   ArgoCD: "https://icon.icepanel.io/Technology/svg/Argo-CD.svg",
   Kafka: "https://icon.icepanel.io/Technology/svg/Apache-Kafka.svg",
-  LangChain: "https://icon.icepanel.io/Technology/svg/LangChain.svg",
-  n8n: "https://icon.icepanel.io/Technology/svg/n8n.svg",
-  Inngest: "https://icon.icepanel.io/Technology/svg/Serverless-Framework.svg",
+  LangChain: "https://cdn.worldvectorlogo.com/logos/langchain.svg",
+  n8n: "https://cdn.worldvectorlogo.com/logos/n8n.svg",
+  Inngest: "https://www.inngest.com/favicon.png",
   MongoDB: "https://icon.icepanel.io/Technology/svg/MongoDB.svg",
   PostgreSQL: "https://icon.icepanel.io/Technology/svg/PostgresSQL.svg",
   Redis: "https://icon.icepanel.io/Technology/svg/Redis.svg",
-  RAG: "https://icon.icepanel.io/Technology/svg/OpenAI.svg",
-  MCP: "https://icon.icepanel.io/Technology/svg/OpenAI.svg",
-  "Vector Databases": "https://icon.icepanel.io/Technology/svg/PostgresSQL.svg",
+  Qdrant: "https://raw.githubusercontent.com/qdrant/qdrant/master/docs/logo.svg",
+  Pinecone: "https://cdn.worldvectorlogo.com/logos/pinecone-1.svg",
 };
 
 /* ─── SKILLS DATA ─── */
@@ -66,7 +64,8 @@ const skillCategories = [
       { name: "PostgreSQL", highlighted: true },
       { name: "Redis", highlighted: false },
       { name: "MongoDB", highlighted: false },
-      { name: "Vector Databases", highlighted: false },
+      { name: "Qdrant", highlighted: false },
+      { name: "Pinecone", highlighted: false },
     ],
   },
   {
@@ -178,9 +177,9 @@ export default function AboutSection() {
                 style={{
                   position: "absolute",
                   right: "5%",
-                  top: "30%",
-                  width: "200px",
-                  height: "200px",
+                  top: "10%",
+                  width: "380px",
+                  height: "380px",
                   pointerEvents: "none",
                   zIndex: 0,
                 }}
@@ -196,7 +195,7 @@ export default function AboutSection() {
                 transition={{ duration: 0.3, delay: 0.4 + ci * 0.06 }}
               >
                 <span className="cat-label">{cat.name}</span>
-                <div className="flex flex-wrap gap-2 relative z-10">
+                <div className="flex flex-wrap gap-3 relative z-10">
                   {cat.skills.map((skill) => (
                     <span
                       key={skill.name}
