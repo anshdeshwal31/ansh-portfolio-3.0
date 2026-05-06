@@ -1,131 +1,237 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
-/* ─── DATA ─── */
-const experiences = [
+/* ─── ALL 6 PROJECTS (priority order) ─── */
+const allProjects = [
   {
-    company: "Personal / Freelance Projects",
-    role: "Full Stack Developer",
-    period: "2024 – PRESENT",
-    location: "INDIA",
-    skills: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AWS", "Docker", "Redis", "LangChain"],
+    name: "Convorbit AI",
+    role: "AI Meeting Intelligence SaaS",
+    techStack: ["Next.js", "TypeScript", "Prisma", "OpenAI", "AWS", "Razorpay"],
+    period: "JUN '25 – MAR '26",
     highlights: [
       {
-        title: "Convorbit AI — Meeting Intelligence SaaS",
-        desc: "Built a full-stack AI meeting intelligence SaaS with RAG pipeline, production-grade integrations (Google Calendar, Slack, Jira, Razorpay), and AWS services (Lambda/S3/EventBridge).",
+        title: "RAG Pipeline",
+        desc: "Auto-joins Zoom/Meet/Teams, generates transcripts & summaries via OpenAI + Pinecone RAG pipeline.",
       },
       {
-        title: "BugHop AI — GitHub AI Assistant",
-        desc: "Built a CodeRabbit-style end-to-end AI GitHub assistant with semantic code retrieval, automated PR/issue review, and SaaS billing via Polar.",
-      },
-      {
-        title: "PingNova — Website Monitoring",
-        desc: "Engineered an event-driven website monitoring platform with Redis Streams, async health checks, JWT auth, and a unified uptime dashboard.",
+        title: "Production Integrations",
+        desc: "Google Calendar, Slack, Jira/Asana/Trello, Razorpay subscriptions with full webhook handling.",
+        stat: { value: "5+", label: "integrations" },
       },
     ],
-    stat: { value: "3+", label: "shipped SaaS products" },
   },
   {
-    company: "Smart India Hackathon",
-    role: "Finalist — Team Lead",
-    period: "SEPT 2025",
-    location: "NATIONAL LEVEL",
-    skills: ["React.js", "Node.js", "MongoDB"],
+    name: "BugHop AI",
+    role: "GitHub AI Code Review Assistant",
+    techStack: ["TypeScript", "Next.js", "Qdrant", "Inngest", "Prisma"],
+    period: "JAN '26 – MAR '26",
     highlights: [
       {
-        title: "36-Hour National Sprint",
-        desc: "Developed a complete Ayurveda platform in a 36-hour hackathon sprint, reaching the national finals of Smart India Hackathon.",
+        title: "Semantic Code Retrieval",
+        desc: "End-to-end RAG pipeline: embeddings + Qdrant vector search for automated PR/issue review feedback.",
+      },
+      {
+        title: "SaaS Controls",
+        desc: "Clerk auth, per-plan usage metering, analytics dashboards, Polar-based billing.",
+        stat: { value: "-40%", label: "review time" },
       },
     ],
-    stat: { value: "Top", label: "national finalist" },
+  },
+  {
+    name: "PingNova",
+    role: "Website Monitoring Platform",
+    techStack: ["TypeScript", "Next.js", "Express", "Bun", "Redis", "PostgreSQL"],
+    period: "FEB '26 – MAR '26",
+    highlights: [
+      {
+        title: "Event-Driven Pipeline",
+        desc: "Redis Streams + consumer groups: periodic ingestion, async health checks, batched tick persistence.",
+      },
+      {
+        title: "Production Backend",
+        desc: "JWT auth, bcrypt hashing, schema validation, integration tests, unified uptime dashboard.",
+      },
+    ],
+  },
+  {
+    name: "Hospitrix",
+    role: "Hospital Management Platform",
+    techStack: ["React.js", "Node.js", "MongoDB", "Razorpay"],
+    period: "2024",
+    highlights: [
+      {
+        title: "Full-Stack Platform",
+        desc: "Patient scheduling, records management, Razorpay payment integration, JWT authentication.",
+      },
+      {
+        title: "RESTful Architecture",
+        desc: "Clean API design with Express.js, middleware chains, and MongoDB aggregation pipelines.",
+      },
+    ],
+  },
+  {
+    name: "Briefly",
+    role: "AI PDF Summarizer",
+    techStack: ["Next.js", "LangChain", "Gemini", "FAISS"],
+    period: "2024",
+    highlights: [
+      {
+        title: "Document Intelligence",
+        desc: "Upload, process, and summarize PDFs with LangChain + Gemini, cutting reading time by 70%.",
+        stat: { value: "-70%", label: "reading time" },
+      },
+      {
+        title: "Semantic Search",
+        desc: "FAISS-based vector search with embedding-level caching, reducing repeat-query latency by 50%.",
+      },
+    ],
+  },
+  {
+    name: "QueryForge",
+    role: "SQL Query Builder",
+    techStack: ["React.js", "TypeScript", "PostgreSQL"],
+    period: "2024",
+    highlights: [
+      {
+        title: "Visual Query Builder",
+        desc: "Drag-and-drop interface for building complex SQL queries without writing raw SQL.",
+      },
+      {
+        title: "Schema Explorer",
+        desc: "Auto-detection of database schema with relationship visualization and query optimization hints.",
+      },
+    ],
   },
 ];
 
 export default function WorkSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
 
   return (
     <section id="work" className="lined-paper margin-line relative py-16 sm:py-24">
-      <div ref={ref} className="relative mx-auto max-w-4xl px-6 sm:px-12 lg:px-16">
-        <SectionHeader
-          chapter="§ 02"
-          pages="4–5"
-          title="Work"
-          titleItalic="history"
-          subtitle="building things, one commit at a time"
-        />
+      <div ref={ref} className="relative mx-auto max-w-5xl px-6 sm:px-12 lg:px-16">
+        {/* Asymmetric subtitle placement */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-2">
+          <SectionHeader
+            chapter="§ 03"
+            pages="6–7"
+            title="Work"
+            titleItalic="history"
+            subtitle=""
+          />
+          <p className="font-caveat text-[16px] sm:text-[18px] text-[var(--accent-red)] sm:pb-3">
+            {allProjects.length} projects, a lot of shipped code
+          </p>
+        </div>
 
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
+        {/* Project cards */}
+        <div className="space-y-6 mt-4">
+          {visibleProjects.map((proj, i) => (
             <motion.div
-              key={exp.company}
+              key={proj.name}
               className="work-card"
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
             >
-              {/* Header */}
+              {/* Header row */}
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
-                  <h3 className="font-serif text-[26px] sm:text-[30px] font-normal leading-tight">
-                    {exp.company}
+                  <h3 className="font-serif text-[26px] sm:text-[32px] font-normal leading-tight">
+                    {proj.name}
                   </h3>
-                  <p className="mt-1 font-kalam text-[17px] text-red-700 font-bold">
-                    {exp.role}
+                  <p
+                    className="mt-1 font-kalam text-[16px] font-bold"
+                    style={{ color: "var(--accent-red)" }}
+                  >
+                    {proj.role}
                   </p>
                 </div>
-                <div className="text-right font-mono text-[11px] tracking-[0.1em] text-[var(--text-muted)] uppercase flex-shrink-0">
-                  <p>{exp.period}</p>
-                  <p>{exp.location}</p>
-                </div>
+                <span className="font-mono text-[11px] tracking-[0.12em] text-[var(--text-muted)] uppercase flex-shrink-0 sm:text-right">
+                  {proj.period}
+                </span>
               </div>
 
-              {/* Skills */}
+              {/* Tech skills row */}
               <div className="mt-4 flex flex-wrap gap-1.5">
-                {exp.skills.map((skill) => (
-                  <span key={skill} className="skill-tag text-[11px]" style={{ padding: "4px 10px" }}>
-                    {skill}
+                {proj.techStack.map((s) => (
+                  <span
+                    key={s}
+                    className="skill-tag"
+                    style={{ padding: "3px 10px", fontSize: "13px" }}
+                  >
+                    {s}
                   </span>
                 ))}
               </div>
 
-              {/* Highlights */}
-              <div className="mt-5 space-y-2.5">
-                {exp.highlights.map((hl) => (
-                  <div key={hl.title} className="work-bullet">
-                    <h4 className="font-serif text-[17px] font-normal text-[var(--text-primary)]">
-                      {hl.title}
-                    </h4>
-                    <p className="mt-1 text-[14px] leading-relaxed text-[var(--text-secondary)]">
+              {/* 2-column project highlights grid — matching reference */}
+              <div className="project-grid">
+                {proj.highlights.map((hl) => (
+                  <div key={hl.title} className="project-cell">
+                    <h4>{hl.title}</h4>
+                    <p>
                       {hl.desc}
+                      {hl.stat && (
+                        <span className="stat-callout">
+                          <span className="value">{hl.stat.value}</span>
+                          <span className="label">{hl.stat.label}</span>
+                        </span>
+                      )}
                     </p>
                   </div>
                 ))}
               </div>
-
-              {/* Stat callout */}
-              {exp.stat && (
-                <div className="mt-4 inline-flex items-baseline gap-2">
-                  <span className="font-caveat text-[26px] text-red-600 line-through decoration-red-400 decoration-2">
-                    {exp.stat.value}
-                  </span>
-                  <span className="font-caveat text-[17px] text-[var(--text-muted)]">
-                    {exp.stat.label}
-                  </span>
-                </div>
-              )}
             </motion.div>
           ))}
         </div>
 
+        {/* Show more / less button */}
+        <AnimatePresence>
+          {!showAll && (
+            <motion.div
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <button
+                onClick={() => setShowAll(true)}
+                className="btn-show-more"
+              >
+                show {allProjects.length - 3} more projects ↓
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {showAll && (
+          <motion.div
+            className="mt-8 flex justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <button
+              onClick={() => setShowAll(false)}
+              className="btn-show-more"
+            >
+              show less ↑
+            </button>
+          </motion.div>
+        )}
+
         {/* Bottom link */}
         <motion.a
           href="#contact"
-          className="inline-flex items-center gap-2 mt-8 font-caveat text-[19px] text-[var(--text-secondary)] hover:text-[var(--accent-red)] transition-colors"
+          className="inline-flex items-center gap-2 mt-8 font-caveat text-[19px] hover:text-[var(--accent-red)] transition-colors"
+          style={{ color: "var(--text-secondary)" }}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.6 }}

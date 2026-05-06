@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
-/* ─── SKILL ICON MAP (icepanel + devicon CDNs) ─── */
+/* ─── SKILL ICON MAP ─── */
 const iconMap: Record<string, string> = {
   "C++": "https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg",
   JavaScript: "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
@@ -16,10 +16,8 @@ const iconMap: Record<string, string> = {
   "Node.js": "https://icon.icepanel.io/Technology/svg/Node.js.svg",
   Prisma: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
   "Tailwind CSS": "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
-  "shadcn/ui": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+  "shadcn/ui": "https://icon.icepanel.io/Technology/svg/React.svg",
   AWS: "https://icon.icepanel.io/Technology/svg/AWS.svg",
-  "EC2": "https://icon.icepanel.io/Technology/svg/AWS.svg",
-  "ECS": "https://icon.icepanel.io/Technology/svg/AWS.svg",
   Docker: "https://icon.icepanel.io/Technology/svg/Docker.svg",
   Kubernetes: "https://icon.icepanel.io/Technology/svg/Kubernetes.svg",
   "CI/CD": "https://icon.icepanel.io/Technology/svg/GitHub-Actions.svg",
@@ -28,19 +26,18 @@ const iconMap: Record<string, string> = {
   Helm: "https://icon.icepanel.io/Technology/svg/Helm.svg",
   ArgoCD: "https://icon.icepanel.io/Technology/svg/Argo-CD.svg",
   Kafka: "https://icon.icepanel.io/Technology/svg/Apache-Kafka.svg",
-  LangChain: "/skills/langchain.svg",
-  n8n: "/skills/n8n.png",
+  LangChain: "https://icon.icepanel.io/Technology/svg/LangChain.svg",
+  n8n: "https://icon.icepanel.io/Technology/svg/n8n.svg",
+  Inngest: "https://icon.icepanel.io/Technology/svg/Serverless-Framework.svg",
   MongoDB: "https://icon.icepanel.io/Technology/svg/MongoDB.svg",
   PostgreSQL: "https://icon.icepanel.io/Technology/svg/PostgresSQL.svg",
   Redis: "https://icon.icepanel.io/Technology/svg/Redis.svg",
   RAG: "https://icon.icepanel.io/Technology/svg/OpenAI.svg",
   MCP: "https://icon.icepanel.io/Technology/svg/OpenAI.svg",
   "Vector Databases": "https://icon.icepanel.io/Technology/svg/PostgresSQL.svg",
-  Terraform: "https://icon.icepanel.io/Technology/svg/Terraform.svg",
-  Lambda: "https://icon.icepanel.io/Technology/svg/AWS-Lambda.svg",
 };
 
-/* ─── SKILLS DATA (from resume screenshot) ─── */
+/* ─── SKILLS DATA ─── */
 const skillCategories = [
   {
     name: "LANGUAGES",
@@ -52,7 +49,7 @@ const skillCategories = [
     ],
   },
   {
-    name: "FRAMEWORKS & LIBRARIES",
+    name: "FRAMEWORKS",
     skills: [
       { name: "Next.js", highlighted: true },
       { name: "React.js", highlighted: false },
@@ -64,11 +61,20 @@ const skillCategories = [
     ],
   },
   {
-    name: "CLOUD & DEVOPS",
+    name: "DATABASES",
+    skills: [
+      { name: "PostgreSQL", highlighted: true },
+      { name: "Redis", highlighted: false },
+      { name: "MongoDB", highlighted: false },
+      { name: "Vector Databases", highlighted: false },
+    ],
+  },
+  {
+    name: "CLOUD & INFRA",
     skills: [
       { name: "AWS", highlighted: false },
-      { name: "Docker", highlighted: true },
       { name: "Kubernetes", highlighted: true },
+      { name: "Docker", highlighted: true },
       { name: "CI/CD", highlighted: false },
       { name: "Prometheus", highlighted: false },
       { name: "Grafana", highlighted: false },
@@ -78,180 +84,159 @@ const skillCategories = [
     ],
   },
   {
-    name: "AI & DATA ENGINEERING",
+    name: "AI / ML",
     skills: [
       { name: "LangChain", highlighted: true },
       { name: "RAG", highlighted: true },
       { name: "n8n", highlighted: false },
+      { name: "Inngest", highlighted: false },
       { name: "MCP", highlighted: false },
     ],
   },
-  {
-    name: "DATABASES",
-    skills: [
-      { name: "MongoDB", highlighted: false },
-      { name: "PostgreSQL", highlighted: true },
-      { name: "Vector Databases", highlighted: false },
-      { name: "Redis", highlighted: false },
-    ],
-  },
-];
-
-const coursework = [
-  "DSA",
-  "OOP",
-  "Operating System",
-  "Computer Networks",
-  "Software Engineering",
-  "DBMS",
 ];
 
 const aboutText =
   "Full-stack developer specializing in building production-grade web applications, cloud-native infrastructure, and AI-powered automation. I build systems that ship fast and scale well.";
 
-/* ─── Skill Pill with icon on hover ─── */
-function SkillPill({
-  name,
-  highlighted,
-}: {
-  name: string;
-  highlighted: boolean;
-}) {
-  const [hovered, setHovered] = useState(false);
-  const icon = iconMap[name];
-
-  return (
-    <motion.span
-      className={`skill-tag ${highlighted ? "highlighted" : ""}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      layout
-    >
-      <AnimatePresence mode="popLayout">
-        {hovered && icon && (
-          <motion.img
-            key="icon"
-            src={icon}
-            alt=""
-            className="inline-block h-4 w-4 mr-1.5 flex-shrink-0"
-            initial={{ opacity: 0, scale: 0.5, width: 0, marginRight: 0 }}
-            animate={{ opacity: 1, scale: 1, width: 16, marginRight: 6 }}
-            exit={{ opacity: 0, scale: 0.5, width: 0, marginRight: 0 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          />
-        )}
-      </AnimatePresence>
-      {name}
-    </motion.span>
-  );
-}
-
 export default function AboutSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
 
   return (
     <section
       id="about"
       className="lined-paper margin-line relative py-16 sm:py-24 pb-8"
     >
-      <div className="relative mx-auto max-w-4xl px-6 sm:px-12 lg:px-16">
+      <div className="relative mx-auto max-w-5xl px-6 sm:px-12 lg:px-16">
         <SectionHeader
           chapter="§ 01"
           pages="2–3"
-          title="Hi, I'm"
-          titleItalic="Ansh Deshwal"
+          title="About"
+          titleItalic="me"
           subtitle="full-stack dev with a thing for clean code & creative UI"
         />
 
-        {/* Bio */}
-        <motion.p
+        {/* Bio — offset to the right for asymmetry */}
+        <motion.div
           ref={ref}
-          className="text-[16px] sm:text-[18px] leading-[1.7] max-w-2xl"
-          style={{
-            color: "var(--text-secondary)",
-            fontFamily: "var(--font-body)",
-          }}
+          className="sm:ml-8 md:ml-16 max-w-xl"
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {aboutText}
-        </motion.p>
+          <p
+            className="text-[16px] sm:text-[18px] leading-[1.7]"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {aboutText}
+          </p>
+          <p
+            className="mt-3 font-caveat text-[17px] sm:text-[19px]"
+            style={{ color: "var(--text-muted)" }}
+          >
+            ~ ships code &amp; sips chai, in that order.
+          </p>
+        </motion.div>
 
-        <motion.p
-          className="mt-3 font-caveat text-[17px] sm:text-[19px]"
-          style={{ color: "var(--text-muted)" }}
+        {/* ─── THE TOOLBOX ─── */}
+        <motion.div
+          className="mt-14"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.35 }}
         >
-          ~ currently studying at LPU, India. Ships code &amp; sips chai, in
-          that order.
-        </motion.p>
-
-        {/* Skills grid — tighter spacing */}
-        <div className="mt-10 space-y-5">
-          {skillCategories.map((cat, ci) => (
-            <motion.div
-              key={cat.name}
-              initial={{ opacity: 0, y: 12 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.35, delay: 0.25 + ci * 0.08 }}
+          <div className="flex items-center justify-between mb-6">
+            <h3
+              className="font-serif text-[28px] sm:text-[36px] italic"
+              style={{ color: "var(--text-primary)" }}
             >
-              <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-[var(--text-muted)] uppercase mb-2">
-                {cat.name}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <SkillPill
-                    key={skill.name}
-                    name={skill.name}
-                    highlighted={skill.highlighted}
-                  />
-                ))}
-              </div>
-              {/* Dashed separator */}
-              <div
-                className="section-divider"
-                style={{ margin: "16px 0 0" }}
-              />
-            </motion.div>
-          ))}
-
-          {/* Coursework */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.35, delay: 0.7 }}
-          >
-            <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-[var(--text-muted)] uppercase mb-2">
-              COURSEWORK
+              — <em>the toolbox</em>
+              <span style={{ color: "var(--accent-red)" }}>.</span>
+            </h3>
+            <p
+              className="font-caveat text-[14px] sm:text-[16px] hidden sm:block"
+              style={{ color: "var(--accent-red)" }}
+            >
+              hover the <span className="highlight">sticker</span> pills ↓
             </p>
-            <div className="flex flex-wrap gap-2">
-              {coursework.map((c) => (
-                <span
-                  key={c}
-                  className="skill-tag text-[12px]"
-                  style={{ padding: "4px 12px" }}
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Link to full skills */}
+          {/* Skills rows — horizontal layout like reference */}
+          <div className="relative">
+            {/* Large watermark icon behind */}
+            {hoveredIcon && (
+              <motion.img
+                key={hoveredIcon}
+                src={hoveredIcon}
+                alt=""
+                className="skills-watermark visible"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 0.12, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  position: "absolute",
+                  right: "5%",
+                  top: "30%",
+                  width: "200px",
+                  height: "200px",
+                  pointerEvents: "none",
+                  zIndex: 0,
+                }}
+              />
+            )}
+
+            {skillCategories.map((cat, ci) => (
+              <motion.div
+                key={cat.name}
+                className="skills-row"
+                initial={{ opacity: 0, y: 8 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.3, delay: 0.4 + ci * 0.06 }}
+              >
+                <span className="cat-label">{cat.name}</span>
+                <div className="flex flex-wrap gap-2 relative z-10">
+                  {cat.skills.map((skill) => (
+                    <span
+                      key={skill.name}
+                      className={`skill-tag ${skill.highlighted ? "highlighted" : ""}`}
+                      onMouseEnter={() =>
+                        setHoveredIcon(iconMap[skill.name] || null)
+                      }
+                      onMouseLeave={() => setHoveredIcon(null)}
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+                {/* Dashed separator */}
+                <div
+                  className="col-span-2"
+                  style={{
+                    gridColumn: "1 / -1",
+                    height: "1px",
+                    background:
+                      "repeating-linear-gradient(to right, var(--border-light) 0, var(--border-light) 8px, transparent 8px, transparent 14px)",
+                    marginTop: "4px",
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom link */}
         <motion.a
           href="#skills"
-          className="inline-flex items-center gap-2 mt-6 font-caveat text-[19px] text-[var(--text-secondary)] hover:text-[var(--accent-red)] transition-colors"
+          className="inline-flex items-center gap-2 mt-6 font-caveat text-[19px] hover:text-[var(--accent-red)] transition-colors"
+          style={{ color: "var(--text-secondary)" }}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
         >
           <span className="highlight">the full periodic table</span>
-          <span className="font-mono text-[12px] text-[var(--text-muted)]">
+          <span className="font-mono text-[12px]" style={{ color: "var(--text-muted)" }}>
             /skills →
           </span>
         </motion.a>

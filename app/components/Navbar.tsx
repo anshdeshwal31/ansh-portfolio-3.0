@@ -10,8 +10,8 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
   { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#work" },
   { label: "Writing", href: "#writing" },
   { label: "Contact", href: "#contact" },
 ];
@@ -147,9 +147,9 @@ export default function Navbar() {
                 <button
                   key={item.href}
                   onClick={() => handleClick(item.href)}
-                  className="text-left px-4 py-3 rounded-xl text-[15px] font-medium transition-colors hover:bg-black/5"
+                  className="text-left px-4 py-3 rounded-xl text-[16px] transition-colors hover:bg-black/5"
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-serif)",
                     color:
                       activeSection === item.href.replace("#", "")
                         ? "var(--accent-red)"
