@@ -26,7 +26,7 @@ export default function Navbar() {
       document.querySelector(item.href)
     );
 
-    let scrollTimeout: NodeJS.Timeout;
+    let scrollTimeout: ReturnType<typeof setTimeout> | undefined;
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -45,7 +45,9 @@ export default function Navbar() {
 
     return () => {
       observerRef.current?.disconnect();
-      clearTimeout(scrollTimeout);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
     };
   }, []);
 
