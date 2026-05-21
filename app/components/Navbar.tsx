@@ -26,6 +26,8 @@ export default function Navbar() {
       document.querySelector(item.href)
     );
 
+    let scrollTimeout: NodeJS.Timeout;
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,18 +36,22 @@ export default function Navbar() {
           }
         });
       },
-      { threshold: 0.3, rootMargin: "-80px 0px -40% 0px" }
+      { threshold: 0.1, rootMargin: "-20% 0px -60% 0px" }
     );
 
     sections.forEach((section) => {
       if (section) observerRef.current?.observe(section);
     });
 
-    return () => observerRef.current?.disconnect();
+    return () => {
+      observerRef.current?.disconnect();
+      clearTimeout(scrollTimeout);
+    };
   }, []);
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
+    setActiveSection(href.replace("#", ""));
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -57,11 +63,11 @@ export default function Navbar() {
       {/* Logo — top-left */}
       <motion.a
         href="#cover"
-        className="fixed top-4 left-4 z-[1001] flex items-center gap-1 rounded-lg px-3 py-1.5"
+        className="fixed top-4 left-4 z-[1001] flex items-center gap-1.5 rounded-lg px-4 py-2"
         style={{
           background: "#1a1a1a",
           fontFamily: "var(--font-kalam)",
-          fontSize: "18px",
+          fontSize: "26px",
           fontWeight: 700,
           color: "white",
         }}
@@ -71,7 +77,7 @@ export default function Navbar() {
         whileHover={{ scale: 1.05 }}
       >
         Ansh{" "}
-        <span style={{ fontSize: "14px" }}>✎</span>
+        <span style={{ fontSize: "18px" }}>✎</span>
       </motion.a>
 
       {/* Resume button — top-right */}

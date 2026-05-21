@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function BookCover() {
@@ -52,7 +53,7 @@ export default function BookCover() {
         >
           {/* A small hand-written note above the title */}
           <motion.div
-            className="absolute -top-10 -left-4 font-caveat text-[22px] text-[#fdfcf0] opacity-80"
+            className="absolute -top-10 -left-4 font-caveat text-[34px] sm:text-[42px] text-[#fdfcf0] opacity-80"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
@@ -62,7 +63,7 @@ export default function BookCover() {
 
           <h1
             className="font-serif leading-[0.85] text-[#fdfcf0]"
-            style={{ fontSize: "clamp(60px, 10vw, 130px)", letterSpacing: "-0.02em" }}
+            style={{ fontSize: "clamp(80px, 12vw, 160px)", letterSpacing: "-0.02em" }}
           >
             Ansh <br />
             <em className="text-[#fdfcf0] italic opacity-90">Deshwal</em>
@@ -86,7 +87,7 @@ export default function BookCover() {
             <a href="#projects" className="btn-resume text-[20px] px-6 py-2 shadow-lg bg-[#fdfcf0] text-[#6b1a1a] hover:bg-[#e8e3d8]">
               Explore Projects
             </a>
-            <span className="font-kalam text-[18px] text-[#fdfcf0] opacity-60 rotate-3">
+            <span className="font-kalam text-[24px] sm:text-[28px] text-[#fdfcf0] opacity-70 rotate-3 hover:scale-110 transition-transform">
               or just scroll down ↓
             </span>
           </motion.div>
@@ -104,9 +105,14 @@ export default function BookCover() {
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-8 bg-[var(--tape-yellow)] z-20 transform -rotate-3 opacity-90 shadow-sm mix-blend-multiply rounded-sm"></div>
           
           <div className="bg-white p-4 pb-12 rounded-sm shadow-[0_12px_24px_rgba(0,0,0,0.12)] border border-[var(--border-light)] relative z-10">
-            <div className="aspect-[4/5] bg-[#f4f2e6] border border-dashed border-[#ccc] flex flex-col items-center justify-center p-6 text-center">
-              <span className="font-serif italic text-[24px] text-[var(--text-primary)] mb-2">Currently</span>
-              <span className="font-caveat text-[20px] text-[var(--accent-red)]">Building scalable systems & exploring AI agents.</span>
+            <div className="relative aspect-[4/5] overflow-hidden bg-[#f4f2e6] border border-dashed border-[#ccc]">
+              <Image
+                src="/ansh/ansh_image.jpg"
+                alt="Ansh Deshwal"
+                fill
+                className="object-cover object-center"
+                priority
+              />
             </div>
             <p className="absolute bottom-3 left-0 w-full text-center font-kalam text-[18px] text-[var(--text-secondary)] font-bold">
               Status: Available

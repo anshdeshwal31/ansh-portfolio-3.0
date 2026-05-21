@@ -16,7 +16,7 @@ export default function ContactSection() {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="contact" className="lined-paper margin-line relative py-20 sm:py-28 pb-32">
+    <section id="contact" className="notebook-bg relative py-20 sm:py-28 pb-32">
       <div ref={ref} className="relative mx-auto max-w-4xl px-6 sm:px-12 lg:px-16">
         <SectionHeader
           chapter="§ 05"

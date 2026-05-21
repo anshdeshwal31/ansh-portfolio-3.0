@@ -4,19 +4,19 @@
    CSS CUSTOM PROPERTIES
    ══════════════════════════════════════════ */
 :root {
-  --bg-paper: #fffcf2;
-  --bg-paper-warm: #ffedd1;
-  --bg-cover: #6b1a1a;
-  --bg-cover-dark: #4a1212;
+  --bg-paper: #f2e3cf;
+  --bg-paper-warm: #e9cfa6;
+  --bg-cover: #5d230b;
+  --bg-cover-dark: #2f231e;
   --text-primary: #1a1a1a;
   --text-secondary: #555555;
   --text-muted: #888888;
-  --accent-red: #c0392b;
+  --accent-red: #b23b33;
   --accent-red-light: #e74c3c;
   --accent-yellow: #fef08a;
   --accent-blue: #3b82f6;
   --accent-green: #22c55e;
-  --border-light: #e5e0d5;
+  --border-light: #e9e0cf;
   --border-dashed: #ccc;
   --pin-red: #dc2626;
   --pin-blue: #2563eb;
@@ -169,7 +169,7 @@ a, button, [role="button"] {
    NAVIGATION — Pill Navbar
    ══════════════════════════════════════════ */
 .nav-pill {
-  background: #f0ebd8;
+  background: #e2d2b6;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 9999px;
   box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -210,7 +210,7 @@ a, button, [role="button"] {
   color: var(--text-primary);
   border: 1.5px solid var(--border-light);
   border-radius: 4px;
-  background: white;
+  background: var(--bg-paper);
   transition: all 0.2s ease;
   white-space: nowrap;
 }
@@ -355,8 +355,8 @@ a, button, [role="button"] {
    POLAROID PROJECT CARDS
    ══════════════════════════════════════════ */
 .polaroid {
-  background: white;
-  padding: 12px 12px 40px;
+  background: var(--bg-paper);
+  padding: 8px 8px 12px; /* reduce bottom padding so caption sits closer to image */
   box-shadow: var(--shadow-card);
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
@@ -400,7 +400,7 @@ a, button, [role="button"] {
   font-size: 20px;
   text-align: center;
   color: var(--text-primary);
-  padding-top: 8px;
+  padding-top: 4px; /* tighten gap between image and caption */
 }
 
 /* placeholder for missing images */
@@ -420,7 +420,7 @@ a, button, [role="button"] {
    WRITING / BLOG CARDS
    ══════════════════════════════════════════ */
 .blog-card {
-  background: white;
+  background: var(--bg-paper);
   border: 1px solid var(--border-light);
   border-radius: 4px;
   padding: 28px 32px;
@@ -453,7 +453,7 @@ a, button, [role="button"] {
   border: 1px solid var(--border-light);
   border-radius: 4px;
   color: var(--text-muted);
-  background: white;
+  background: var(--bg-paper);
 }
 
 .blog-tag.highlighted {

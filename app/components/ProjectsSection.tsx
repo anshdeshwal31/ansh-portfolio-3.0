@@ -11,9 +11,9 @@ const projects = [
     id: "01",
     name: "Convorbit AI",
     caption: "Convorbit AI",
-    hasImage: false,
-    image: "",
-    url: "https://convorbit.vercel.app/",
+    hasImage: true,
+    image: "/projects/convorbit.png",
+    url: "https://convorbitai.vercel.app/",
     pinColor: "#dc2626",
     rotation: -2.5,
   },
@@ -21,9 +21,9 @@ const projects = [
     id: "02",
     name: "BugHop AI",
     caption: "BugHop AI",
-    hasImage: false,
-    image: "",
-    url: "https://bughop.vercel.app/",
+    hasImage: true,
+    image: "/projects/bughop.png",
+    url: "https://bug-hop.vercel.app/",
     pinColor: "#eab308",
     rotation: 1.5,
   },
@@ -31,8 +31,8 @@ const projects = [
     id: "03",
     name: "PingNova",
     caption: "PingNova",
-    hasImage: false,
-    image: "",
+    hasImage: true,
+    image: "/projects/pingnova.png",
     url: "https://pingnova.vercel.app/",
     pinColor: "#2563eb",
     rotation: -1,
@@ -43,7 +43,7 @@ const projects = [
     caption: "Hospitrix",
     hasImage: true,
     image: "/projects/hospitrix.png",
-    url: "#",
+    url: "https://hospitrix-frontend.onrender.com/",
     pinColor: "#16a34a",
     rotation: 2,
   },
@@ -53,7 +53,7 @@ const projects = [
     caption: "Briefly",
     hasImage: true,
     image: "/projects/briefly.png",
-    url: "#",
+    url: "https://briefly-drab.vercel.app/",
     pinColor: "#dc2626",
     rotation: -1.8,
   },
@@ -63,7 +63,7 @@ const projects = [
     caption: "QueryForge",
     hasImage: true,
     image: "/projects/queryforge.png",
-    url: "#",
+    url: "https://queryforge-frontend.onrender.com/",
     pinColor: "#eab308",
     rotation: 1.2,
   },
@@ -77,7 +77,7 @@ export default function ProjectsSection() {
     <section id="projects" className="notebook-bg relative py-16 sm:py-24">
       <div
         ref={ref}
-        className="relative mx-auto max-w-5xl px-6 sm:px-12 lg:px-16"
+        className="relative mx-auto max-w-6xl px-6 sm:px-12 lg:px-16"
       >
         <SectionHeader
           chapter="§ 02"
@@ -117,19 +117,16 @@ export default function ProjectsSection() {
                 style={{ background: project.pinColor }}
               />
 
-              {/* Label */}
-              <span className="polaroid-label">
-                #{project.id} · {project.name.toUpperCase()}
-              </span>
+              {/* Label intentionally removed to show cleaner images */}
 
               {/* Image or placeholder */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm bg-gray-100">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm bg-transparent">
                 {project.hasImage ? (
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-500"
                   />
                 ) : (
                   <div className="polaroid-placeholder w-full h-full">
