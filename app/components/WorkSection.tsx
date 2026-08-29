@@ -169,15 +169,15 @@ export default function WorkSection() {
   const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
 
   return (
-    <section id="work" className="lined-paper margin-line relative py-16 sm:py-24">
+    <section id="work-projects" className="lined-paper margin-line relative py-16 sm:py-24">
       <div ref={ref} className="relative mx-auto max-w-5xl px-6 sm:px-12 lg:px-16">
         {/* Asymmetric subtitle placement */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-2">
           <SectionHeader
-            chapter="§ 03"
-            pages="6–7"
-            title="Work"
-            titleItalic="history"
+            chapter="§ 04"
+            pages="8–9"
+            title=""
+            titleItalic="Projects"
             subtitle=""
           />
           <p className="font-caveat text-[16px] sm:text-[18px] text-[var(--accent-red)] sm:pb-3">

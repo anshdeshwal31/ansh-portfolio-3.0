@@ -7,31 +7,31 @@ import SectionHeader from "./SectionHeader";
 /* ─── DATA ─── */
 const certifications = [
   {
-    date: "2024 / DEC",
-    tag: "DSA",
-    tagHighlighted: true,
-    title: "Data Structures and Algorithm",
-    description:
-      "Certified in DSA (iamneo) — covering problem solving, algorithmic thinking, and C++ implementation.",
-    link: "https://drive.google.com/file/d/1RGlHtnjF3M8EkLoKx3DvffMSE2ecQKAy/view?usp=sharing",
-  },
-  {
     date: "2025 / MAY",
-    tag: "JAVA",
-    tagHighlighted: false,
-    title: "Java Programming",
+    tag: "AWS",
+    tagHighlighted: true,
+    title: "AWS AI Practitioner (AIF-C01)",
     description:
-      "Certified in Java Programming (iamneo) — OOP, Collections, Multithreading, and design patterns.",
-    link: "https://drive.google.com/file/d/1cCur8MMnBFB5aVmu3fZ7HYbmv35K4Q9p/view?usp=sharing",
+      "AWS Certified AI Practitioner — covers foundational AI/ML concepts, generative AI, responsible AI, and AWS AI/ML services.",
+    link: "https://aws.amazon.com/certification/certified-ai-practitioner/",
   },
   {
-    date: "2024 / DEC",
-    tag: "OOP",
-    tagHighlighted: true,
-    title: "Object Oriented Programming",
+    date: "2026 / MAY",
+    tag: "AWS",
+    tagHighlighted: false,
+    title: "AWS Cloud Practitioner (CLF-C02)",
     description:
-      "Certified in OOP (iamneo) — abstraction, polymorphism, design patterns, and SOLID principles.",
-    link: "https://drive.google.com/file/d/19ZBfi7WJq6kdi_KYUSAml4eM6OBy9Bbc/view?usp=sharing",
+      "AWS Certified Cloud Practitioner — validates cloud fluency across core AWS services, security, architecture, pricing, and support.",
+    link: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+  },
+  {
+    date: "2026 / MAY",
+    tag: "ORACLE",
+    tagHighlighted: true,
+    title: "Oracle Certified AI Foundations Associate",
+    description:
+      "Oracle Certified AI Foundations Associate — demonstrates understanding of AI, ML, deep learning, and Oracle AI services and solutions.",
+    link: "https://education.oracle.com/oracle-ai-foundations-associate/pexam_1Z0-1122",
   },
 ];
 

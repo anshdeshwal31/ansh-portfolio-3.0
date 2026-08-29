@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import StatusBar from "./components/StatusBar";
 import BookCover from "./components/BookCover";
 import AboutSection from "./components/AboutSection";
+import WorkHistorySection from "./components/WorkHistorySection";
+import SkillsSection from "./components/SkillsSection";
 import WorkSection from "./components/WorkSection";
 import ProjectsSection from "./components/ProjectsSection";
 import WritingSection from "./components/WritingSection";
@@ -12,10 +14,12 @@ import ContactSection from "./components/ContactSection";
 
 const tocItems = [
   { ch: "§ 01", label: "About", page: "p.2", href: "#about" },
-  { ch: "§ 02", label: "Things I built", page: "p.4", href: "#projects" },
-  { ch: "§ 03", label: "Work history", page: "p.6", href: "#work" },
-  { ch: "§ 04", label: "Certifications", page: "p.8", href: "#writing" },
-  { ch: "§ 05", label: "Say hello", page: "p.10", href: "#contact" },
+  { ch: "§ 02", label: "Work history", page: "p.4", href: "#work" },
+  { ch: "§ 03", label: "Skills", page: "p.6", href: "#skills" },
+  { ch: "§ 04", label: "Things I built", page: "p.8", href: "#projects" },
+  { ch: "§ 05", label: "Projects", page: "p.10", href: "#work-projects" },
+  { ch: "§ 06", label: "Certifications", page: "p.12", href: "#writing" },
+  { ch: "§ 07", label: "Say hello", page: "p.14", href: "#contact" },
 ];
 
 export default function Home() {
@@ -108,6 +112,8 @@ export default function Home() {
 
       {/* ═══ CONTENT SECTIONS ═══ */}
       <AboutSection />
+      <WorkHistorySection />
+      <SkillsSection />
       <ProjectsSection />
       <WorkSection />
       <WritingSection />

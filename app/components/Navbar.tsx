@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavItem {
@@ -10,44 +10,39 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Work", href: "#work" },
-  { label: "Writing", href: "#writing" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#work-projects" },
+  { label: "Accolades", href: "#writing" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("about");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const sections = navItems.map((item) =>
-      document.querySelector(item.href)
-    );
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
 
-    let scrollTimeout: ReturnType<typeof setTimeout> | undefined;
+    const handleScroll = () => {
+      const offset = window.innerHeight * 0.35;
+      const scrollPos = window.scrollY + offset;
 
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "-20% 0px -60% 0px" }
-    );
+      let current = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPos) {
+          current = id;
+        }
+      }
+      setActiveSection(current);
+    };
 
-    sections.forEach((section) => {
-      if (section) observerRef.current?.observe(section);
-    });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
-      observerRef.current?.disconnect();
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
