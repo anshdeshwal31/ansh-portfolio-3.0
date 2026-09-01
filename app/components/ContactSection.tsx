@@ -50,6 +50,21 @@ export default function ContactSection() {
           anshdeshwal1234@gmail.com
         </motion.a>
 
+        {/* Contact number */}
+        <motion.a
+          href="https://wa.me/919627660757"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-flex items-center gap-2 font-mono text-[15px] sm:text-[16px] font-medium hover:text-[var(--accent-red)] transition-colors"
+          style={{ color: "var(--text-primary)" }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.35 }}
+        >
+          <span className="text-lg">📱</span>
+          9627660757
+        </motion.a>
+
         {/* Social links */}
         <motion.div
           className="mt-8 space-y-3"
